@@ -56,7 +56,7 @@ jobs:
             - name: Create GitHub Release
               uses: ncipollo/release-action@v1
               with:
-                   tag: ${{ env.ReleaseVersion }}
+                   tag: master
                    allowUpdates: true
                    artifacts: "build/*"
                    token: ${{ github.token }}
