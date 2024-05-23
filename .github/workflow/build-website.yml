@@ -1,4 +1,4 @@
-name: Cron Deploy
+name: Build And Release
 on:
   push:
     branches: [ master ]
@@ -49,17 +49,6 @@ jobs:
             #         mkdir -p ./build/assets/files/
             #         cp *.pdf ./build/assets/files/
             #         ls ./build/assets/files/
-
-            - name: Upload files to OSS
-              uses: ./.github/actions/aliyun-oss-website-action
-              with:
-                  accessKeyId: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
-                  accessKeySecret: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
-                  bucket: ${{ secrets.ALIYUN_OSS_BUCKET }}
-                  # use your own endpoint
-                  endpoint: ${{ secrets.ALIYUN_OSS_ENDPOINT }}
-                  folder: build
-                  onlyUpload: true
 
             - name: Remove pdf
               run: rm -rf ./build/assets/files/*.pdf
