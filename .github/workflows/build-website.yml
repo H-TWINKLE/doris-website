@@ -13,6 +13,10 @@ jobs:
                   persist-credentials: false
                   submodules: recursive
 
+            - name: Build Env Prop
+              shell: pwsh
+              run: .\build.ps1 --stable=true
+
             - name: Add Chinese Fonts
               run: |
                   sudo apt-get install ttf-mscorefonts-installer
@@ -57,7 +61,7 @@ jobs:
             - name: Create GitHub Release
               uses: ncipollo/release-action@v1
               with:
-                   tag: $CI_COMMIT_SHORT_SHA
+                   tag: ${{ env.ReleaseVersion }}
                    allowUpdates: true
                    artifacts: "build.tar.gz"
                    token: ${{ github.token }}
